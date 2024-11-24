@@ -14,7 +14,7 @@
         }
 
         .header {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://placehold.co/1200x400?text=Header+Image&bg=green&color=white');
+            background: linear-gradient(rgba(0,0,0,0.6), #92e10ae8), url('https://placehold.co/1200x400?text=Header+Image&bg=green&color=white');
             color: white;
             padding: 2rem;
             text-align: center;
@@ -38,7 +38,7 @@
         }
 
         .nav a:hover {
-            background: rgba(255,255,255,0.2);
+            background: #cafc04e0;
         }
 
         .main-content {
@@ -178,11 +178,7 @@
 
     <nav class="nav">
         <a href="index.html">Beranda</a>
-        <a href="kalkulator.html">Kalkulator Pertanian</a>
-        <a href="peta.html">Peta Lahan</a>
-        <a href="tips.html">Tips Pertanian</a>
-        <a href="forum.html">Forum</a>
-        <a href="lapor.html">Lapor Masalah</a>
+        <a href="kalkulator.html">Kalkulator Pupuk</a>
     </nav>
 
     <div class="main-content">
