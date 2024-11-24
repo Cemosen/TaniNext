@@ -1,0 +1,253 @@
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Penggunaan Pupuk - Pertanian Berkelanjutan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .header {
+            background: linear-gradient(rgba(176, 237, 7, 0.6), rgba(207, 200, 10, 0.6)), url('https://placehold.co/1200x400?text=Background+Image+of+Fertile+Farmland&bg=1ca3ec&text_color=ffffff');
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .nav {
+            background: #00ba0f;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        .nav a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .calculator {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin: 2rem auto;
+            max-width: 600px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 4px;
+        }
+
+        .low { background-color: #90EE90; }
+        .medium { background-color: #FFD700; }
+        .high { background-color: #FFA07A; }
+        .very-high { background-color: #FF6B6B; }
+
+        .tips {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 4px;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>TaniNext</h1>
+        <p>Mari bersama mewujudkan pertanian yang berkelanjutan dan ramah lingkungan</p>
+    </header>
+
+    <nav class="nav">
+       
+        <a href="kalkulator.html">Kalkulator Pupuk</a>
+      
+    </nav>
+    
+    <div class="calculator">
+        <h2>Kalkulator Penggunaan Pupuk</h2>
+        <br></br>
+        
+        <div class="input-group">
+            <label for="area">Luas Lahan (m²):</label>
+            <input type="number" id="area" min="0" value="0">
+        </div>
+
+        <div class="input-group">
+            <label for="nitrogen">Kandungan Nitrogen (N) dalam pupuk (%):</label>
+            <input type="number" id="nitrogen" min="0" value="0">
+        </div>
+
+        <div class="input-group">
+            <label for="phosphorus">Kandungan Fosfor (P) dalam pupuk (%):</label>
+            <input type="number" id="phosphorus" min="0" value="0">
+        </div>
+
+        <div class="input-group">
+            <label for="potassium">Kandungan Kalium (K) dalam pupuk (%):</label>
+            <input type="number" id="potassium" min="0" value="0">
+        </div>
+
+        <div class="input-group">
+            <label for="fertilizer">Jumlah Pupuk yang Digunakan (kg):</label>
+            <input type="number" id="fertilizer" min="0" value="0">
+        </div>
+
+        <button onclick="calculateFertilizerUsage()">Hitung Penggunaan Pupuk</button>
+
+        <div id="result" class="result" style="display:none;"></div>
+        <div id="tips" class="tips" style="display:none;"></div>
+    </div>
+    
+    <footer>
+        <p>© 2024 Pertanian Berkelanjutan. Semua hak dilindungi.</p>
+        <p>Kontak Darurat: 112</p>
+    </footer>
+
+    <script>
+        function calculateFertilizerUsage() {
+            // Mengambil nilai input
+            const area = document.getElementById('area').value;
+            const nitrogen = document.getElementById('nitrogen').value;
+            const phosphorus = document.getElementById('phosphorus').value;
+            const potassium = document.getElementById('potassium').value;
+            const fertilizer = document.getElementById('fertilizer').value;
+
+            // Menghitung total kandungan pupuk
+            const totalNitrogen = (fertilizer * nitrogen) / 100;
+            const totalPhosphorus = (fertilizer * phosphorus) / 100;
+            const totalPotassium = (fertilizer * potassium) / 100;
+
+            // Menentukan kategori
+            let category, color, tips;
+            if (totalNitrogen <= 50 && totalPhosphorus <= 50 && totalPotassium <= 50) {
+                category = "SANGAT BAGUS";
+                color = "low";
+                tips = [
+                    "Pertahankan penggunaan pupuk yang efisien!",
+                    "Gunakan pupuk organik untuk meningkatkan kesuburan tanah",
+                    "Lakukan uji tanah secara berkala untuk mengetahui kebutuhan nutrisi",
+                    "Pertimbangkan untuk menggunakan pupuk hayati",
+                    "Gunakan teknik rotasi tanaman untuk menjaga keseimbangan nutrisi tanah"
+                ];
+            } else if (totalNitrogen <= 100 && totalPhosphorus <= 100 && totalPotassium <= 100) {
+                category = "Sedang";
+                color = "medium";
+                tips = [
+                    "Kurangi penggunaan pupuk kimia secara bertahap",
+                    "Gunakan pupuk kompos untuk meningkatkan struktur tanah",
+                    "Lakukan pemupukan sesuai dengan rekomendasi hasil uji tanah",
+                    "Gunakan mulsa untuk menjaga kelembaban tanah",
+                    "Pertimbangkan untuk menggunakan pupuk slow-release"
+                ];
+            } else if (totalNitrogen <= 150 && totalPhosphorus <= 150 && totalPotassium <= 150) {
+                category = "BAGUS";
+                color = "high";
+                tips = [
+                    "Kurangi dosis pupuk kimia yang digunakan",
+                    "Gunakan pupuk organik cair sebagai alternatif",
+                    "Lakukan pemupukan secara bertahap dan teratur",
+                    "Gunakan teknik irigasi yang efisien untuk mengurangi pencucian nutrisi",
+                    "Pertimbangkan untuk menggunakan pupuk mikroba"
+                ];
+            } else {
+                category = "TIDAK DISARANKAN";
+                color = "very-high";
+                tips = [
+                    "Lakukan audit penggunaan pupuk secara menyeluruh",
+                    "Ganti sebagian besar pupuk kimia dengan pupuk organik",
+                    "Terapkan sistem pertanian terpadu untuk mengurangi ketergantungan pada pupuk kimia",
+                    "Kurangi frekuensi pemupukan",
+                    "Pertimbangkan untuk menggunakan teknologi pertanian presisi"
+                ];
+            }
+
+            // Menampilkan hasil
+            const resultDiv = document.getElementById('result');
+            resultDiv.className = `result ${color}`;
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = `
+                <h3>Hasil Perhitungan:</h3>
+                <p>Total Nitrogen: ${totalNitrogen.toFixed(1)} kg</p>
+                <p>Total Fosfor: ${totalPhosphorus.toFixed(1)} kg</p>
+                <p>Total Kalium: ${totalPotassium.toFixed(1)} kg</p>
+                <p>Kategori: ${category}</p>
+            `;
+
+            // Menampilkan tips
+            const tipsDiv = document.getElementById('tips');
+            tipsDiv.style.display = 'block';
+            tipsDiv.innerHTML = `
+                <h3>Tips Penggunaan Pupuk:</h3>
+                <ul>
+                    ${tips.map(tip => `<li>${tip}</li>`).join('')}
+                </ul>
+            `;
+        }
+    </script>
+</body>
+</html>
